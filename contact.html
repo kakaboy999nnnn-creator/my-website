@@ -1,214 +1,320 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | HOMAM AJEENA</title>
-    <!-- خطوط وأيقونات جوجل وFontAwesome -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #090d16 100%);
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --accent-gold: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --input-bg: rgba(255, 255, 255, 0.04);
-            --input-border: rgba(255, 255, 255, 0.12);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="تواصل مع همام عجينة">
+<title>Contact | HOMAM AJEENA</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem 0;
-        }
+<style>
+  :root{
+    --ink:      #05070a;
+    --wood-1:   #0c0f0c;
+    --wood-2:   #1a140f;
+    --gold-1:   #ecd08a;
+    --gold-2:   #b98a34;
+    --gold-3:   #6e4c1e;
+    --ivory:    #f4ecdc;
+    --muted:    #a79a86;
+    --hair:     rgba(236,208,138,0.20);
+    --glow:     rgba(185,138,52,0.22);
+    --input-bg: rgba(255,255,255,0.035);
+  }
 
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            padding: 2.5rem;
-            max-width: 450px;
-            width: 88%;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; }
 
-        h2 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.4rem;
-            color: var(--text-main);
-        }
+  body{
+    font-family:'Tajawal', sans-serif;
+    color:var(--ivory);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow-x:hidden;
+    background:
+      radial-gradient(ellipse 60% 45% at 50% 6%, var(--glow), transparent 60%),
+      linear-gradient(160deg, var(--wood-1) 0%, #100c09 45%, var(--wood-2) 100%);
+    padding:40px 20px;
+  }
 
-        .sub-heading {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
+  @media (prefers-reduced-motion:no-preference){
+    body{ animation:bg-breathe 14s ease-in-out infinite alternate; }
+  }
+  @keyframes bg-breathe{
+    from{ filter:brightness(1); }
+    to{ filter:brightness(1.06); }
+  }
 
-        /* نموذج إرسال الرسائل */
-        .form-group {
-            margin-bottom: 1.2rem;
-            text-align: right;
-        }
+  .dust{ position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+  .dust i{
+    position:absolute;
+    width:3px; height:3px;
+    border-radius:50%;
+    background:var(--gold-1);
+    opacity:0;
+    box-shadow:0 0 6px 1px var(--glow);
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .dust i{ animation:rise linear infinite; }
+  }
+  @keyframes rise{
+    0%{ transform:translateY(0) translateX(0); opacity:0; }
+    10%{ opacity:.6; }
+    90%{ opacity:.3; }
+    100%{ transform:translateY(-120vh) translateX(var(--drift,20px)); opacity:0; }
+  }
 
-        label {
-            display: block;
-            margin-bottom: 0.4rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
+  .stage{
+    position:relative;
+    z-index:1;
+    width:100%;
+    max-width:460px;
+  }
 
-        input, textarea {
-            width: 100%;
-            padding: 12px 16px;
-            background: var(--input-bg);
-            border: 1px solid var(--input-border);
-            border-radius: 10px;
-            color: #ffffff;
-            font-family: inherit;
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
+  .frame-corner{
+    position:absolute;
+    width:34px; height:34px;
+    border:1.5px solid var(--gold-2);
+    opacity:.7;
+  }
+  .frame-corner.tl{ top:-1px; right:-1px; border-left:none; border-bottom:none; border-top-right-radius:18px; }
+  .frame-corner.br{ bottom:-1px; left:-1px; border-right:none; border-top:none; border-bottom-left-radius:18px; }
 
-        input:focus, textarea:focus {
-            border-color: #f59e0b;
-        }
+  .card{
+    position:relative;
+    background:linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015));
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid var(--hair);
+    border-radius:22px;
+    padding:2.8rem 2.1rem 2.4rem;
+    text-align:center;
+    box-shadow:
+      0 30px 70px rgba(0,0,0,0.55),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+  }
 
-        textarea {
-            resize: vertical;
-            height: 100px;
-        }
+  @media (prefers-reduced-motion:no-preference){
+    .card{ animation:rise-in .9s cubic-bezier(.19,1,.22,1) both; }
+  }
+  @keyframes rise-in{
+    from{ opacity:0; transform:translateY(18px) scale(.98); }
+    to{ opacity:1; transform:translateY(0) scale(1); }
+  }
 
-        .btn-submit {
-            width: 100%;
-            background: var(--accent-gold);
-            color: #ffffff;
-            border: none;
-            padding: 14px;
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 0.5rem;
-            box-shadow: 0 6px 18px rgba(217, 119, 6, 0.2);
-            transition: all 0.3s ease;
-        }
+  h2{
+    font-family:'Aref Ruqaa', serif;
+    font-weight:700;
+    font-size:1.9rem;
+    background:linear-gradient(180deg, var(--ivory) 20%, var(--gold-1) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:0.6rem;
+  }
 
-        .btn-submit:hover {
-            opacity: 0.95;
-            transform: translateY(-1px);
-        }
+  .sub-heading{
+    font-size:0.9rem;
+    font-weight:300;
+    color:var(--muted);
+    margin-bottom:2rem;
+  }
 
-        .divider {
-            height: 1px;
-            background: var(--card-border);
-            margin: 2rem 0 1.5rem 0;
-        }
+  .form-group{
+    margin-bottom:1.2rem;
+    text-align:right;
+  }
 
-        /* خانة المنصات الاجتماعية */
-        .social-title {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
+  label{
+    display:block;
+    margin-bottom:0.5rem;
+    font-size:0.8rem;
+    font-weight:500;
+    color:var(--muted);
+  }
 
-        .social-grid {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-        }
+  input, textarea{
+    width:100%;
+    padding:13px 16px;
+    background:var(--input-bg);
+    border:1px solid var(--hair);
+    border-radius:10px;
+    color:var(--ivory);
+    font-family:inherit;
+    font-size:0.9rem;
+    outline:none;
+    transition:border-color .3s ease, background .3s ease;
+  }
 
-        .social-card {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
+  input::placeholder, textarea::placeholder{ color:rgba(167,154,134,0.6); }
 
-        .social-card:hover {
-            background: rgba(245, 158, 11, 0.15);
-            border-color: rgba(245, 158, 11, 0.4);
-            color: #f59e0b;
-            transform: translateY(-3px);
-        }
+  input:focus, textarea:focus{
+    border-color:var(--gold-2);
+    background:rgba(255,255,255,0.05);
+  }
 
-        .back-btn {
-            display: inline-block;
-            margin-top: 1.8rem;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s ease;
-        }
+  textarea{ resize:vertical; height:110px; }
 
-        .back-btn:hover {
-            color: var(--text-main);
-        }
-    </style>
+  .btn-submit{
+    width:100%;
+    background:linear-gradient(135deg, var(--gold-1) 0%, var(--gold-2) 100%);
+    color:var(--ink);
+    border:none;
+    padding:15px;
+    border-radius:10px;
+    font-family:inherit;
+    font-size:1rem;
+    font-weight:700;
+    letter-spacing:0.2px;
+    cursor:pointer;
+    margin-top:0.6rem;
+    box-shadow:0 12px 28px rgba(185,138,52,0.26);
+    transition:transform .35s cubic-bezier(.19,1,.22,1), box-shadow .35s ease;
+  }
+
+  .btn-submit:hover{
+    transform:translateY(-2px);
+    box-shadow:0 16px 34px rgba(185,138,52,0.36);
+  }
+  .btn-submit:focus-visible{
+    outline:2px solid var(--gold-1);
+    outline-offset:3px;
+  }
+
+  .divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin:2.2rem auto 1.6rem;
+    width:130px;
+  }
+  .divider span{ height:1px; flex:1; background:linear-gradient(90deg, transparent, var(--gold-2), transparent); }
+  .divider i.dot{
+    width:5px; height:5px;
+    background:var(--gold-1);
+    transform:rotate(45deg);
+    flex-shrink:0;
+  }
+
+  .social-title{
+    font-size:0.85rem;
+    font-weight:300;
+    color:var(--muted);
+    margin-bottom:1.2rem;
+  }
+
+  .social-grid{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+  }
+
+  .social-card{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:50px;
+    height:50px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.04);
+    border:1px solid var(--hair);
+    color:var(--ivory);
+    text-decoration:none;
+    font-size:1.15rem;
+    transition:transform .3s cubic-bezier(.19,1,.22,1), border-color .3s ease, color .3s ease, background .3s ease;
+  }
+
+  .social-card:hover{
+    background:rgba(185,138,52,0.14);
+    border-color:var(--gold-2);
+    color:var(--gold-1);
+    transform:translateY(-3px);
+  }
+
+  .back-btn{
+    display:inline-block;
+    margin-top:1.8rem;
+    color:var(--muted);
+    text-decoration:none;
+    font-size:0.85rem;
+    transition:color .2s ease;
+  }
+  .back-btn:hover{ color:var(--ivory); }
+
+  @media (max-width:380px){
+    .card{ padding:2.2rem 1.3rem 2rem; }
+    h2{ font-size:1.6rem; }
+  }
+</style>
 </head>
 <body>
+
+  <div class="dust" aria-hidden="true"></div>
+
+  <div class="stage">
+    <div class="frame-corner tl"></div>
+    <div class="frame-corner br"></div>
+
     <div class="card">
-        <h2>إرسال رسالة</h2>
-        <p class="sub-heading">يمكنك ترك رسالتك هنا وستصلني مباشرة</p>
+      <h2>إرسال رسالة</h2>
+      <p class="sub-heading">يمكنك ترك رسالتك هنا وستصلني مباشرة</p>
 
-        <!-- نموذج المراسلة المباشر -->
-        <form action="https://formspree.io/f/sample" method="POST">
-            <div class="form-group">
-                <label>الاسم الكامل</label>
-                <input type="text" name="name" required placeholder="ادخل اسمك هنا">
-            </div>
-            <div class="form-group">
-                <label>البريد الإلكتروني</label>
-                <input type="email" name="email" required placeholder="example@domain.com">
-            </div>
-            <div class="form-group">
-                <label>الرسالة</label>
-                <textarea name="message" required placeholder="اكتب رسالتك هنا..."></textarea>
-            </div>
-            <button type="submit" class="btn-submit">إرسال الرسالة</button>
-        </form>
-
-        <div class="divider"></div>
-
-        <!-- خانة منصات التواصل الاجتماعي -->
-        <p class="social-title">أو تواصل معي عبر المنصات التالية:</p>
-        <div class="social-grid">
-            <a href="https://x.com/HOMAM_AJEENA" target="_blank" class="social-card" title="X"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://instagram.com/HOMAM_AJEENA" target="_blank" class="social-card" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://linkedin.com/in/HOMAM_AJEENA" target="_blank" class="social-card" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <form action="https://formspree.io/f/sample" method="POST">
+        <div class="form-group">
+          <label>الاسم الكامل</label>
+          <input type="text" name="name" required placeholder="ادخل اسمك هنا">
         </div>
+        <div class="form-group">
+          <label>البريد الإلكتروني</label>
+          <input type="email" name="email" required placeholder="example@domain.com">
+        </div>
+        <div class="form-group">
+          <label>الرسالة</label>
+          <textarea name="message" required placeholder="اكتب رسالتك هنا..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">إرسال الرسالة</button>
+      </form>
 
-        <a href="index.html" class="back-btn">← العودة للصفحة الرئيسية</a>
+      <div class="divider"><span></span><i class="dot"></i><span></span></div>
+
+      <p class="social-title">أو تواصل معي عبر المنصات التالية:</p>
+      <div class="social-grid">
+        <a href="https://x.com/HOMAM_AJEENA" target="_blank" class="social-card" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://instagram.com/HOMAM_AJEENA" target="_blank" class="social-card" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://linkedin.com/in/HOMAM_AJEENA" target="_blank" class="social-card" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+
+      <a href="index.html" class="back-btn">← العودة للصفحة الرئيسية</a>
     </div>
+  </div>
+
+  <script>
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const field = document.querySelector('.dust');
+      const count = 18;
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('i');
+        const left = Math.random() * 100;
+        const delay = Math.random() * 12;
+        const duration = 10 + Math.random() * 10;
+        const drift = (Math.random() * 60 - 30) + 'px';
+        p.style.left = left + 'vw';
+        p.style.bottom = '-10px';
+        p.style.setProperty('--drift', drift);
+        p.style.animationDelay = delay + 's';
+        p.style.animationDuration = duration + 's';
+        field.appendChild(p);
+      }
+    }
+  </script>
+
 </body>
 </html>
